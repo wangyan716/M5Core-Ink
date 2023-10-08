@@ -7,7 +7,7 @@
 * 获取更多资料请访问：https://docs.m5stack.com/zh_CN/core/coreink
 *
 * Describe: Simple Clock.  简易时钟
-* Date: 2022/8/30
+* Date: 2023/10/08
 *******************************************************************************
   A simple clock based on M5CoreInk.
   Libraries:
@@ -19,8 +19,8 @@
 #include <sntp.h>
 #include <M5Unified.h>
 
-#define WIFI_SSID     "unisun-office"
-#define WIFI_PASSWORD "unisun@777"
+#define WIFI_SSID     "******"
+#define WIFI_PASSWORD "******"
 #define NTP_TIMEZONE  "JST-8"
 #define NTP_SERVER1   "ntp.aliyun.com"
 #define NTP_SERVER2   "ntp1.aliyun.com"
