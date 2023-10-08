@@ -19,8 +19,8 @@
 #include <sntp.h>
 #include <M5Unified.h>
 
-#define WIFI_SSID     "YOUR WIFI SSID"
-#define WIFI_PASSWORD "YOUR WIFI PASSWD"
+#define WIFI_SSID     "unisun-office"
+#define WIFI_PASSWORD "unisun@777"
 #define NTP_TIMEZONE  "JST-8"
 #define NTP_SERVER1   "ntp.aliyun.com"
 #define NTP_SERVER2   "ntp1.aliyun.com"
@@ -59,10 +59,10 @@ void setup(void) {
 
     auto dt = M5.Rtc.getDateTime();
 
-    while (dt.time.seconds != 0) {
-        dt = M5.Rtc.getDateTime();
-        delay(500);
-    }
+    // while (dt.time.seconds != 0) {
+    //     dt = M5.Rtc.getDateTime();
+    //     delay(500);
+    // }
 
     M5.Display.setFreeFont(&Orbitron_Light_24);
     if (dt.time.minutes == 30) {
@@ -70,15 +70,29 @@ void setup(void) {
         M5.Display.setTextSize(2.5);
         M5.Display.drawCenterString("Clock", 100, 120);
     }
-
+    M5.Display.clear();   //Clear screen.  清屏
     char buf[32] = {0};
-    M5.Display.setTextSize(2);
+    
     M5.Display.fillRect(0, 0, 200, 100);
-    sprintf(buf, "%02d:%02d", dt.time.hours, dt.time.minutes);
-    M5.Display.drawCenterString(buf, 100, 10);
-    M5.Display.setTextSize(1);
-    sprintf(buf, "%02d-%02d-%04d", dt.date.date, dt.date.month, dt.date.year);
-    M5.Display.drawCenterString(buf, 100, 70);
+    //屏幕显示
+    M5.Display.setTextSize(1.0);
+    M5.Display.drawCenterString("Winston Wang", 100, 10);
+
+    M5.Display.setTextSize(1.5);
+    sprintf(buf, "%02d:%02d:%02d", dt.time.hours, dt.time.minutes,dt.time.seconds);
+    M5.Display.drawCenterString(buf, 100, 60);
+
+    M5.Display.setTextSize(1.2);
+    sprintf(buf, "%04d-%02d-%02d", dt.date.year, dt.date.month, dt.date.date );
+    M5.Display.drawCenterString(buf, 100, 120);
+
+    M5.Display.setTextSize(1.1);
+    sprintf(buf, "%s: %01d","Week is ", dt.date.weekDay);
+    
+    M5.Display.drawCenterString(buf, 100, 160);
+
+
+    //屏幕显示结束
 
     M5.Display.sleep();
     M5.Rtc.clearIRQ();
